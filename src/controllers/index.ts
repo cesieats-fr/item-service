@@ -1,21 +1,32 @@
 import { Request, Response } from 'express';
 
-const register = (req: Request, res: Response) => {
+// Liste des items d'un restaurant à partir de l'id du restaurant
+const getFromRestaurant = (req: Request, res: Response) => {
   res.status(200).json({ message: 'Hello, world!' });
 };
 
-const login = (req: Request, res: Response) => {
+const createItem = (req: Request, res: Response) => {
   res.status(200).json({ message: 'Hello, world!' });
 };
 
-const deleteAccount = (req: Request, res: Response) => {
+const editItem = (req: Request, res: Response) => {
+  res.status(200).json({ message: 'Hello, world!' });
+};
+
+const getItem = (req: Request, res: Response) => {
+  res.status(200).json({ message: 'Hello, world!' });
+};
+
+const deleteRestaurantItem = (req: Request, res: Response) => {
   res.status(200).json({ message: 'Hello, world!' });
 };
 
 const controller = {
-  register,
-  login,
-  deleteAccount,
+  getFromRestaurant,
+  createItem,
+  getItem,
+  editItem,
+  deleteRestaurantItem
 };
 
 export default controller;

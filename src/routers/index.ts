@@ -1,21 +1,18 @@
 import express, { Router, Request, Response } from 'express';
+import controller from './controller';
 
 const router: Router = express.Router();
 
-router.post('/register', (req: Request, res: Response) => {
-  res.send('Hello, world!');
-});
+router.get('/getFromRestaurant/{restaurantId}',controller.getFromRestaurant);
 
-router.post('/login', (req: Request, res: Response) => {
-  res.json('login');
-});
+router.post('/create/{restaurantId}',controller.createItem);
 
-router.delete('/delete/{id}', (req: Request, res: Response) => {
-  res.json('delete');
-});
+router.put('/edit/{itemId}',controller.editItem);
 
-router.put('/edit/{id}', (req: Request, res: Response) => {
-  res.json('edit');
-});
+router.get('/get/{itemId}',controller.getItem);
+
+// Prend deux Item en paramètre, l'id de l'item à supprimer et l'id du restaurant
+router.delete('/deleteItem/{id}',controller.deleteRestaurantItem);
+
 
 export default router;

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-template
+  name: item-service
   namespace: cesieats-services
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: service-template
+      app: item-service
   template:
     metadata:
       labels:
-        app: service-template
+        app: item-service
     spec:
       containers:
-        - name: service-template
-          image: kilme/service-template:$IMAGE_VERSION
+        - name: item-service
+          image: kilme/item-service:$IMAGE_VERSION
           resources:
             limits:
               memory: "512Mi"
@@ -27,14 +27,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: template-service
+  name: service-item
   namespace: cesieats-services
 spec:
   selector:
-    app: service-template
+    app: item-service
   ports:
     - name: http
       protocol: TCP
       port: 3000
-      nodePort: 30199
+      nodePort: 30109
   type: NodePort
