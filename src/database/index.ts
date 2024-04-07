@@ -6,6 +6,7 @@ export const itemSchema = new Schema<IItem>({
   description: { type: String, required: false },
   imageUrl: { type: String, required: false },
   price: { type: Number, required: true },
+  idRestaurant: { type: Number, required: true },
 });
 
 export const menuSchema = new Schema<IMenu>({
@@ -26,8 +27,7 @@ export const MenuItem = model<IMenuItem>('MenuItem', menuItemSchema);
 
 export const connectMongoose = () => {
   mongoose
-    // .connect('mongodb://192.168.2.30:32000/', {
-    .connect('mongodb://rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:32000/', {
+    .connect(`mongodb://${process.env.DB_URL}/`, {
       dbName: 'cesieats-service',
       user: process.env.DB_USERNAME,
       pass: process.env.DB_PASSWORD,

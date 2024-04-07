@@ -18,15 +18,20 @@ spec:
         - name: item-service
           image: kilme/item-service:$IMAGE_VERSION
           env:
-          - name: DB_USERNAME
+           - name: DB_USERNAME
             valueFrom: 
-              secretKeyRef:
-                name: mongo-creds
+              configMapKeyRef:
+                name: mongodb-credentials
                 key: username
+          - name: DB_URL
+            valueFrom: 
+              configMapKeyRef:
+                name: mongodb-credentials
+                key: services-url
           - name: DB_PASSWORD
             valueFrom: 
               secretKeyRef:
-                name: mongo-creds
+                name: mongodb-credentials-secret
                 key: password
           resources:
             limits:
