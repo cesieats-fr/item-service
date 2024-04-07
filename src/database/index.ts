@@ -25,17 +25,11 @@ export const Item = model<IItem>('Item', itemSchema);
 export const Menu = model<IMenu>('Menu', menuSchema);
 export const MenuItem = model<IMenuItem>('MenuItem', menuItemSchema);
 
-export const connectMongoose = () => {
-  mongoose
-    .connect(`mongodb://${process.env.DB_URL}/`, {
-      dbName: 'cesieats-service',
-      user: process.env.DB_USERNAME,
-      pass: process.env.DB_PASSWORD,
-    })
-    .then(() => {
-      console.log('Connected to the database');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+export async function connectMongoose() {
+  await mongoose.connect(`mongodb://${process.env.DB_URL}/`, {
+    dbName: 'cesieats-service',
+    user: process.env.DB_USERNAME,
+    pass: process.env.DB_PASSWORD,
+  });
+  console.log('Connected to MongoDB ');
+}
