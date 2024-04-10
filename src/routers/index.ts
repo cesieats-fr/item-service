@@ -42,4 +42,8 @@ router.delete('/deleteMenu', controller.deleteMenu);
 // Retire un item d'un menu
 router.delete('/deleteMenuItem', controller.deleteMenuItem);
 
+router.get('/getItemsByRestaurantId/:id', controller.getItemsByRestaurantId);
+
+router.get('/getMenusByRestaurantId/:id', controller.getMenusByRestaurantId);
+
 export default router;
