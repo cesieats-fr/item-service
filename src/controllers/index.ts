@@ -227,7 +227,8 @@ const deleteMenu = async (req: Request, res: Response) => {
 // Retire un item d'un menu
 const deleteMenuItem = async (req: Request, res: Response) => {
   try {
-    const result = await MenuItem.findByIdAndDelete(req.body.id);
+    const filter = { idItem: req.body.idItem,idMenu: req.body.idMenu }
+    const result = await MenuItem.findOneAndDelete(filter);
     console.log('id: ' + req.body.id);
     console.log('result: ' + result);
     res.status(200).json(result);
