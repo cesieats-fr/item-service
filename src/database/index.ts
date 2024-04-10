@@ -6,7 +6,7 @@ export const itemSchema = new Schema<IItem>({
   description: { type: String, required: false },
   imageUrl: { type: String, required: false },
   price: { type: Number, required: true },
-  idRestaurant: { type: Number, required: true },
+  idRestaurant: { type: String, required: true },
 });
 
 export const menuSchema = new Schema<IMenu>({
@@ -14,7 +14,7 @@ export const menuSchema = new Schema<IMenu>({
   description: { type: String, required: false },
   imageUrl: { type: String, required: false },
   price: { type: Number, required: true },
-  idRestaurant: { type: Number, required: true },
+  idRestaurant: { type: String, required: true },
 });
 
 export const menuItemSchema = new Schema<IMenuItem>({
