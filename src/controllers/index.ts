@@ -29,7 +29,7 @@ const editItem = async (req: Request, res: Response) => {
       idRestaurant: req.body.idRestaurant,
       price: req.body.price,
     };
-    const result = await Item.findByIdAndUpdate(req.body.id, update);
+    const result = await Item.findByIdAndUpdate(req.body.id, update, { new: true });
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: 'an unexpected error occurred' });
@@ -105,7 +105,7 @@ const editMenu = async (req: Request, res: Response) => {
       idRestaurant: req.body.idRestaurant,
       price: req.body.price,
     };
-    const result = await Menu.findByIdAndUpdate(req.body.id, update);
+    const result = await Menu.findByIdAndUpdate(req.body.id, update, { new: true });
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: 'an unexpected error occurred' });
@@ -174,11 +174,7 @@ const getMenuItems = async (req: Request, res: Response) => {
 const deleteMenu = async (req: Request, res: Response) => {
   try {
     const filter = { idMenu: req.body.id };
-    console.log('filter : ',filter);
-    const result = await Menu.findById(req.body.id);
-    console.log('result : ', result);
     const resultMenu = await Menu.findByIdAndDelete(req.body.id);
-    console.log('resultMenu', resultMenu);
     const resultMenuItem = await MenuItem.deleteMany(filter);
     res.status(200).json({
       resultMenu: resultMenu,
@@ -202,12 +198,7 @@ const deleteMenuItem = async (req: Request, res: Response) => {
 
 const getItemsByRestaurantId = async (req: Request, res: Response) => {
   try {
-    console.log(req.params);
-    console.log(req.params.id);
-
     const result = await Item.find({ idRestaurant: req.params.id }).exec();
-
-    console.log(result);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: 'an unexpected error occurred' });
@@ -216,13 +207,7 @@ const getItemsByRestaurantId = async (req: Request, res: Response) => {
 
 const getMenusByRestaurantId = async (req: Request, res: Response) => {
   try {
-    console.log(req.params);
-    console.log(req.params.id);
-
     const result = await Menu.find({ idRestaurant: req.params.id }).exec();
-
-    console.log(result);
-
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: 'an unexpected error occurred' });
