@@ -174,11 +174,11 @@ const getMenuItems = async (req: Request, res: Response) => {
 const deleteMenu = async (req: Request, res: Response) => {
   try {
     const filter = { idMenu: req.body.id };
-    console.log(filter);
+    console.log('filter : ',filter);
     const result = await Menu.findById(req.body.id);
-    console.log(result);
+    console.log('result : ', result);
     const resultMenu = await Menu.findByIdAndDelete(req.body.id);
-    console.log(resultMenu);
+    console.log('resultMenu', resultMenu);
     const resultMenuItem = await MenuItem.deleteMany(filter);
     res.status(200).json({
       resultMenu: resultMenu,
