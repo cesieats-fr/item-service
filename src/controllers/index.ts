@@ -199,8 +199,12 @@ const deleteMenuItem = async (req: Request, res: Response) => {
 
 const getItemsByRestaurantId = async (req: Request, res: Response) => {
   try {
-    const filter = { idRestaurant: req.params.id };
-    const result = await Item.find(filter).exec();
+    console.log(req.params);
+    console.log(req.params.id);
+
+    const result = await Item.find({ idRestaurant: req.params.id }).exec();
+    
+    console.log(result);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: 'an unexpected error occurred' });
