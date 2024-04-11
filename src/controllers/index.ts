@@ -90,7 +90,6 @@ const addMenu = async (req: Request, res: Response) => {
     };
     const result = await Menu.create(menu);
     res.status(200).json(result);
-    res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: 'an unexpected error occurred' });
   }
@@ -175,7 +174,11 @@ const getMenuItems = async (req: Request, res: Response) => {
 const deleteMenu = async (req: Request, res: Response) => {
   try {
     const filter = { idMenu: req.body.id };
+    console.log(filter);
+    const result = await Menu.findById(req.body.id);
+    console.log(result);
     const resultMenu = await Menu.findByIdAndDelete(req.body.id);
+    console.log(resultMenu);
     const resultMenuItem = await MenuItem.deleteMany(filter);
     res.status(200).json({
       resultMenu: resultMenu,
