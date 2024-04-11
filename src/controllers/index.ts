@@ -26,7 +26,6 @@ const editItem = async (req: Request, res: Response) => {
       title: req.body.title,
       description: req.body.description,
       imageUrl: req.body.imageUrl,
-      idRestaurant: req.body.idRestaurant,
       price: req.body.price,
     };
     const result = await Item.findByIdAndUpdate(req.body.id, update, { new: true });
@@ -102,7 +101,6 @@ const editMenu = async (req: Request, res: Response) => {
       title: req.body.title,
       description: req.body.description,
       imageUrl: req.body.imageUrl,
-      idRestaurant: req.body.idRestaurant,
       price: req.body.price,
     };
     const result = await Menu.findByIdAndUpdate(req.body.id, update, { new: true });
